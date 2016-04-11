@@ -94,27 +94,27 @@
 以下是在使用JSHint时的一些提示：
 * 声明一个\.jshintignore文件，将类似于node_modules、bower_components的文件包含进去
 * 你可以使用如下的一个.jshintrc文件来和你的规则一起使用
-
+        #以下配置的意义参考：https://github.com/jshint/jshint/blob/master/examples/.jshintrc
         {
-            "curly": true,
-            "eqeqeq": true,
-            "newcap": true,
-            "noarg": true,
-            "noempty": true,
-            "nonew": true,
-            "sub": true,
-            "undef": true,
-            "unused": true,
-            "trailing": true,
-            "boss": true,
-            "equnull": true,
-            "strict": true,
-            "immed": true,
-            "expr": true,
-            "latedef": "nofunc",
-            "quotmark": "single",
-            "indent": 2,
-            "node": true
+            "curly": true,          //对于新的块或作用域必须加{}
+            "eqeqeq": true,         //在变量比较时必须使用'==='
+            "newcap": true,         //对于构造函数首字母必须大写
+            "noarg": true,          //禁止使用'arguments.caller'和'arguments.callee'
+            "noempty": true,        //禁止使用空的块
+            "nonew": true,          //禁止使用不起作用(没有赋值)的构造函数
+            "sub": true,            //允许使用'[]'符号，即使是可以用点符号代替
+            "undef": true,          //要求所有的非全局变量都必须声明（防止全局泄露）
+            "unused": true,         //未使用的变量； true-所有的变量和最后一个函数参数；vars-只是所有的变量;                                                              //strict-所有的变量和所有的函数参数
+            "trailing": true,       // ？
+            "boss": true,           //在比较的地方允许赋值
+            "equnull": true,        //允许使用'== null'
+            "strict": true,         //要求所有的函数在ES5的严格模式下运行
+            "immed": true,          //要求立即执行的函数要用()包裹，eg : '(function () {} ())'
+            "expr": true,           //允许表达式声明作为程序
+            "latedef": "nofunc",    //要求变量非函数在使用前要先被定义
+            "quotmark": "single",   // 引号一致性; 'single'-单引号；'double'-双引号；false-不做检查（默认）；true-要求一致；
+            "indent": 2,            //缩进？
+            "node": true            //是否是node.js 
         }
 
 这些规则绝对不是你所必须遵循的，但是你必须在根本不用linting和不写出超级难看的代码风格之间找到一个 合适的平衡点。（sweet spot）
