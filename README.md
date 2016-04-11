@@ -94,6 +94,7 @@
 以下是在使用JSHint时的一些提示：
 * 声明一个\.jshintignore文件，将类似于node_modules、bower_components的文件包含进去
 * 你可以使用如下的一个.jshintrc文件来和你的规则一起使用
+       
         #以下配置的意义参考：https://github.com/jshint/jshint/blob/master/examples/.jshintrc
         {
             "curly": true,          //对于新的块或作用域必须加{}
