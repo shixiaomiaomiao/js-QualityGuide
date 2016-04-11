@@ -1,5 +1,6 @@
 # js-QualityGuide
 > 原文英文地址：https://github.com/bevacqua/js
+
 这篇指南旨在为JavaScript代码的使用提供基本规则，从而保证它的良好的可读性，同时在一个团队中的不同开发者之间保持一致。本文的重点立足于js的代码质量和js应用中的各部分一致性。
 
 # 目标
@@ -32,7 +33,6 @@
 
 <a href = '#modules' id = 'modules'></a>
 #模块
-***
 这个风格指南假设你正在使用一个模块系统，例如：[CommonJS](http://wiki.commonjs.org/wiki/CommonJS),[AMD](http://requirejs.org/docs/whyamd.html),[ES6 Modules](https://eviltrout.com/2014/05/03/getting-started-with-es6.html),或者其它类型的模块系统。模块系统提供私有作用域，避免泄露到全局对象中，通过自动生成的依赖图来提高代码的基本组织，而不是人为地创建许多\<script\>标签。
 
 模块系统也能为我们提供依赖注入模式，这对于单元模块的独立测试至关重要。
@@ -43,7 +43,6 @@
 
 <a href = '#spacing' id = 'spacing'></a>
 #间距
-***
 间距在一个应用的每个文件中必须保持一致。为此，使用\.editorconfig等配置文件是极为被鼓励的。下面是我所建议的默认以javascript缩进开始。
 
     #editorconfig.org
@@ -92,9 +91,10 @@
 #Linting
 另一方面，Linting有时是必须的。再一次重申，不要使用一个对代码风格有极度控制要求的linter,比如说[jslint](http://www.jslint.com/)。相反地，要使用一些更加宽容的linter，比如：[jshint](https://github.com/jshint/jshint/)或者[eslint](https://github.com/jshint/jshint/)。
 
-####以下是在使用JSHint时的一些提示：
+以下是在使用JSHint时的一些提示：
 *声明一个\.jshintignore文件，将类似于node_modules、bower_components的文件包含进去
 *你可以使用如下的一个.jshintrc文件来和你的规则一起使用
+
         {
             "curly": true,
             "eqeqeq": true,
