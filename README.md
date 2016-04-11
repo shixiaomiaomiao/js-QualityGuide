@@ -32,5 +32,10 @@
 
 <a href = '#modules' id = 'modules'></a>
 #模块
+这个风格指南假设你正在使用一个模块系统，例如：[CommonJS](http://wiki.commonjs.org/wiki/CommonJS),[AMD](http://requirejs.org/docs/whyamd.html),[ES6 Modules](https://eviltrout.com/2014/05/03/getting-started-with-es6.html),或者其它类型的模块系统。模块系统提供私有作用域，避免泄露到全局对象中，通过自动生成的依赖图来提高代码的基本组织，而不是人为地创建许多\<script\>标签。
 
+模块系统也能为我们提供依赖注入模式，这对于独立地测试单元模块至关重要。
+
+<a href = '#strict' id = 'strcit'></a>
+#严格模式
 
