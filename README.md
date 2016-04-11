@@ -1,5 +1,5 @@
 # js-QualityGuide
-> 原文地址：https://github.com/bevacqua/js
+> 原文英文地址：https://github.com/bevacqua/js
 
 这篇指南旨在为JavaScript代码的使用提供基本规则，从而保证它的良好的可读性，同时在一个团队中的不同开发者之间保持一致。本文的重点立足于js的代码质量和js应用中的各部分一致性。
 
@@ -38,4 +38,8 @@
 
 <a href = '#strict' id = 'strcit'></a>
 #严格模式
+记住总是将\'use strict\'放在你的模块的顶端。严格模式能够帮你捕捉到无意义的行为，阻止差劲的实践，而且更加快速，因为它允许编译器对你的代码做出一定程度的假设。
+
+<a href = '#spacing' id = 'spacing'></a>
+#空格
 
