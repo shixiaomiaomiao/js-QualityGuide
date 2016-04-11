@@ -9,7 +9,7 @@
 #内容列表
 1. [模块](#modules)
 2. [严格模式](#strict)
-3. [空格](#spacing)
+3. [间距](#spacing)
 4. [分号](#semicolons)
 5. [风格检查](#stylecheck)
 6. [Linting](#linting)
@@ -34,12 +34,45 @@
 #模块
 这个风格指南假设你正在使用一个模块系统，例如：[CommonJS](http://wiki.commonjs.org/wiki/CommonJS),[AMD](http://requirejs.org/docs/whyamd.html),[ES6 Modules](https://eviltrout.com/2014/05/03/getting-started-with-es6.html),或者其它类型的模块系统。模块系统提供私有作用域，避免泄露到全局对象中，通过自动生成的依赖图来提高代码的基本组织，而不是人为地创建许多\<script\>标签。
 
-模块系统也能为我们提供依赖注入模式，这对于独立地测试单元模块至关重要。
+模块系统也能为我们提供依赖注入模式，这对于单元模块的独立测试至关重要。
 
 <a href = '#strict' id = 'strcit'></a>
 #严格模式
 记住总是将\'use strict\'放在你的模块的顶端。严格模式能够帮你捕捉到无意义的行为，阻止差劲的实践，而且更加快速，因为它允许编译器对你的代码做出一定程度的假设。
 
 <a href = '#spacing' id = 'spacing'></a>
-#空格
+#间距
+间距在一个应用的每个文件中必须保持一致。为此，使用\.editorconfig等配置文件是极为被鼓励的。下面是我所建议的默认以javascript缩进开始。
 
+    #editorconfig.org
+    root = true
+    
+    [*]
+    indent_style = space
+    indent_size = 2
+    end_of_line = lf
+    charset = utf-8
+    trim_trailing_whitespace = true
+    insert_final_newline = true
+    
+    [*.md]
+    trim_trailing_whitespace = false
+    
+设置tabs或k空格取决于项目的特性，但是我建议使用2个空格符来实现缩进。这一点\.editorconfig文件能够为我们注意到。并且每一个人都可以通过按tab键来创造一个正确的间距。
+
+间距不只是需要按tab键，还需要在函数声明参数的前、后和之间设置空格。这种间距通常来说与代码执行正确与否完全无关，所以对于大多数的团队来说，达成一个能够让每个人都满意的机制非常困难。
+
+    function () {}
+    
+    function( a, b ){}
+    
+    function(a, b) {}
+    
+    function(a,b) {}
+    
+试着将上述的写法的不同降到最小，但是也不用对其细想过多。
+
+如果可能地话，将每行的字符数控制在80以下，确保可阅读性。
+
+<a href = '#semicolons' id = 'semicolons'></a>
+#分号 ；
