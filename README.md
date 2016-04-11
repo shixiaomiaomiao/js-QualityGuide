@@ -90,3 +90,34 @@
 
 <a href = '#linting' id = 'linting'></a>
 #Linting
+另一方面，Linting有时是必须的。再一次重申，不要使用一个对代码风格有极度控制要求的linter,比如说[jslint](http://www.jslint.com/)。相反地，要使用一些更加宽容的linter，比如：[jshint](https://github.com/jshint/jshint/)或者[eslint](https://github.com/jshint/jshint/)。
+
+####以下是在使用JSHint时的一些提示：
+*声明一个\.jshintignore文件，将类似于node_modules、bower_components的文件包含进去
+*你可以使用如下的一个.jshintrc文件来和你的规则一起使用
+        {
+            "curly": true,
+            "eqeqeq": true,
+            "newcap": true,
+            "noarg": true,
+            "noempty": true,
+            "nonew": true,
+            "sub": true,
+            "undef": true,
+            "unused": true,
+            "trailing": true,
+            "boss": true,
+            "equnull": true,
+            "strict": true,
+            "immed": true,
+            "expr": true,
+            "latedef": "nofunc",
+            "quotmark": "single",
+            "indent": 2,
+            "node": true
+        }
+
+这些规则绝对不是你所必须遵循的，但是你必须在根本不用linting和不写出超级难看的代码风格之间找到一个 合适的平衡点。（sweet spot）
+
+<a href = '#string' id = 'string'></a>
+#字符串
