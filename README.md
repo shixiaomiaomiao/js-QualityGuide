@@ -105,7 +105,7 @@
             "nonew": true,          //禁止使用不起作用(没有赋值)的构造函数
             "sub": true,            //允许使用'[]'符号，即使是可以用点符号代替
             "undef": true,          //要求所有的非全局变量都必须声明（防止全局泄露）
-            "unused": true,         //未使用的变量； true-所有的变量和最后一个函数参数；vars-只是所有的变量;                                                              //strict-所有的变量和所有的函数参数
+            "unused": true,         //未使用的变量； true-所有的变量和最后一个函数参数；vars-只是所有的变量;strict-所有的变量和所有的函数参数         
             "trailing": true,       // ？
             "boss": true,           //在比较的地方允许赋值
             "equnull": true,        //允许使用'== null'
