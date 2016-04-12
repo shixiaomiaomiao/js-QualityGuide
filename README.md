@@ -270,4 +270,19 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
 
 <a href = '#functions' id = 'functions'></a>
 #函数
+当声明一个函数时，记住使用[函数声明形式](http://stackoverflow.com/q/336859/389745)而不是[函数表达式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function)。因为[声明提前](https://github.com/buildfirst/buildfirst/tree/master/ch05/04_hoisting)。
+
+<b>不好的写法</b>
+
+        var sum = function (x, y) {
+            return x + y;
+        }
+        
+<b>好的写法</b>
+
+        function sum (x, y) {
+            return x + y;
+        }
+
+但是，使用函数表达式没有任何错误，只是会产生[]().
 
