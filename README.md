@@ -126,9 +126,11 @@
 字符串的引用需要使用相同的引用符号，使用\'或者\" ，并且在你的代码中始终一致。确保团队中的人在每一处的Javascript处都是用相同的引用标记。
 
 <b>不好的写法</b>
+
         var message = 'oh hai ' + name + "!";
         
 <b>好的写法</b>
+
         var message = 'oh hai ' + name + '!';
     
 通常情况下，如果你使用例如[util.format in Node](nodejs.org/api/util.html#util_util_format_format)等参数替换方法，你将成为一个更快乐的Javascript开发者。使用这种方式将更加容易格式化你的字符串，并且使得代码看起来更加整洁。
@@ -164,6 +166,7 @@
 保持变量声明方式的一致性，并且在作用域的顶部声明。鼓励变量声明执行\"一个变量一行\"原则。逗号在前，单个var声明，多个var声明，这些都是可以的，只要在项目中保持一致，并且确保团队一致就好。
 
 <b>不好的写法</b>
+
         var foo = 1,
             bar = 2;
             
@@ -197,6 +200,7 @@
 声明变量时不及时赋值也是可以接受的，并且与其他代码一样占有一行。
 
 <b>可接受的</b>
+
         var a = 'a';
         var b = 2;
         var i, j;
@@ -206,11 +210,23 @@
 大括号是必须要有的。使用大括号再加上合理的空格策略将帮助你避免例如[Apple's SSL/TLS bug](https://www.imperialviolet.org/2014/02/22/applebug.html)。
 
 <b>不好的写好</b>
+
         if (err) throw err;
 
 <b>好的写好</b>
+
         if(err) { throw err; }
         
+从文本理解角度来考虑，避免条件语句出现在单独一行将更加好。
+
+<b>更好的写法</b>
+        
+        if (err) {
+            throw err;
+        }
+
+<a href = '#equality' id = 'equality'></a>
+#相等
 
 
 
