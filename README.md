@@ -182,7 +182,7 @@
             var bar = 2;
         }
 
-<b>好的写好</b>
+<b>好的写法</b>
 只是因为他们相互之间一致，并不是因为风格一致。
 
         var foo = 1;
@@ -209,11 +209,11 @@
 #条件语句
 大括号是必须要有的。使用大括号再加上合理的空格策略将帮助你避免例如[Apple's SSL/TLS bug](https://www.imperialviolet.org/2014/02/22/applebug.html)。
 
-<b>不好的写好</b>
+<b>不好的写法</b>
 
         if (err) throw err;
 
-<b>好的写好</b>
+<b>好的写法</b>
 
         if(err) { throw err; }
         
@@ -227,6 +227,23 @@
 
 <a href = '#equality' id = 'equality'></a>
 #相等
+避免使用 == 和!= 操作符，而使用 === 和 ！== 。 === 和 ！== 操作符被称为"严格相等操作符"，而 == 和 ！= 操作符则[尝试将比较的数转化成相同类型](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)。
 
+<b>不好的写法</b>
 
+        function isEmptyString (text) {
+            return text == '';
+        }
+        
+        isEmptyString(0);
+        // <- true
+        
+<b>好的写法</b>
 
+        function isEmptyString (text) {
+            return text === '';
+        }
+        
+        isEmptyString(0);
+        //<- false
+    
