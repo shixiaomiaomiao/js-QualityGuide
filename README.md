@@ -122,3 +122,41 @@
 
 <a href = '#string' id = 'string'></a>
 #字符串
+
+字符串的引用需要使用相同的引用符号，使用\'或者\" ，并且在你的代码中始终一致。确保团队中的人在每一处的Javascript处都是用相同的引用标记。
+
+<b>不好的写法</b>
+        var message = 'oh hai ' + name + "!";
+        
+<b>好的写法</b>
+        var message = 'oh hai ' + name + '!';
+    
+通常情况下，如果你使用例如[util.format in Node](nodejs.org/api/util.html#util_util_format_format)等参数替换方法，你将成为一个更快乐的Javascript开发者。使用这种方式将更加容易格式化你的字符串，并且使得代码看起来更加整洁。
+
+<b>更好的写法</b>
+        var message = util.format('oh hai %s!', name);
+        
+如果不用util接口，你可以使用以下的代码实现类似的功能。
+        function format () {
+            var args = [].slice.call(arguments);
+            var initial = args.shif();
+            
+            function replacer (text, replacement) {
+                return text.replace('%s', replacement);
+            }
+            return args.reduce(replacer, initial);
+        }
+        
+声明多行的字符串，尤其是对于HTML片段，有时最好是将他们先组成作为一个buffer数组，然后在join在一起。用字符串连接的方式也许更快，但是也更加难以追踪。
+
+        var html = [
+            '<div>',
+                format('<span class = "monster">%s<span>', name),
+            '</div>'
+        ].join('');
+        
+利用这种建立数组的风格，你可以将片段推入到数组中，在最后将所有的东西组合在一起。这实际上就是[一些模板引擎例如Jade](https://github.com/jadejs/jade)喜欢做的事情。
+
+<a href = '#varDeclaration' id = 'varDeclaration'></a>
+#变量声明
+
