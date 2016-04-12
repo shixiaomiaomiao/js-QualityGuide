@@ -18,7 +18,7 @@
 8. [变量声明](#varDeclaration)
 9. [条件语句](#conditionals)
 10. [相等](#equality)
-11. [三元操作符](#ternaryoperatos)
+11. [三元操作符](#ternaryoperators)
 12. [函数](#functions)
 13. [原型](#prototype)
 14. [对象字面量](#objectliterals)
@@ -227,7 +227,7 @@
 
 <a href = '#equality' id = 'equality'></a>
 #相等
-避免使用 == 和!= 操作符，而使用 === 和 ！== 。 === 和 ！== 操作符被称为"严格相等操作符"，而 == 和 ！= 操作符则[尝试将比较的数转化成相同类型](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)。
+避免使用 == 和!= 操作符，而使用 === 和 ！== 。 === 和 ！== 操作符被称为"严格相等操作符"，而 == 和 ！= 操作符则[尝试将比较的变量转化成相同类型](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)。
 
 <b>不好的写法</b>
 
@@ -247,3 +247,27 @@
         isEmptyString(0);
         //<- false
     
+<a href = '#ternaryoperators' id = 'ternaryoperators'></a>
+#三元操作符
+
+对于确定情况操作，三元操作符还好理解；但是对于复杂的选择，三元操作符就不好令人接受了。记住这样一个准则，如果一眼扫过去，你的大脑能够立即解析出结果就用三元操作符声明，有些时候如果太过复杂，则难以理解。
+
+jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型例子](https://github.com/jquery/jquery/blob/c869a1ef8a031342e817a2c063179a787ff57239/src/ajax.js#L117)
+
+<b>不好的写法</b>
+
+        function calculate (a, b) {
+            return a && b ? 11 : a ? 10 : b ? 1 : 0;
+        }
+        
+<b>好的写法</b>
+
+        function getName (mobile) {
+            return mobile ? mobile.name : 'Generic Player';
+        }
+
+如果使用三元操作符会增加令人理解的复杂度的话，请使用 if/else 代替。
+
+<a href = '#functions' id = 'functions'></a>
+#函数
+
