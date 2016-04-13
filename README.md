@@ -284,5 +284,94 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
             return x + y;
         }
 
-但是，使用函数表达式没有任何错误，只是会产生[]().
+但是，使用函数表达式没有任何错误，只是会[套用另一种函数](http://ejohn.org/blog/partial-functions-in-javascript/).
 
+<b>好的写法</b>
+
+        var plusThree = sum.bind(null,3);
+请记住：[函数声明会提前](https://github.com/buildfirst/buildfirst/tree/master/ch05/04_hoisting)至作用域的最顶端。所以，他们定义和使用的顺序不是最重要的。尽管如此，但你仍然应该将函数卸载作用域的顶部，避免将它们之于条件语句中。
+
+<b>不好的写法</b>
+
+        if (Math.random() > 0.5) {
+            sum(1, 3);
+            
+            function sum (x, y) {
+                return x + y;
+            }
+        }
+        
+<b>好的写法</b>
+
+        if(Math.random() > 0.5) {
+            sum(1, 3);
+        }
+        
+        function sum (x, y) {
+            return x + y;
+        }
+
+
+
+        function sum (x, y) {
+            return x + y;
+        }
+        
+        if (Math.random() > 0.5) {
+            sum(1, 3);
+        }
+        
+如果你需要一个"no-op"(无操作)方法，你可以使用Function.prototype或者是function noop () {}.理想情况下，对于noop函数的一个引用在应用中贯穿始终。
+
+不管何时如果你需要操作一个类数组对象，将其丢入数组中。
+
+<b>不好的写法</b>
+
+        var divs = document.querySelectorAll('div');
+        
+        for (i = 0; i < divs.length; i++) {
+            console.log(divs[i].innerHTML);
+        }
+        
+<b>好的写法</b>
+
+        var divs = document.querySelectorAll('div');
+        
+        [].slice.call(divs).forEach(function (div) {
+            console.log(div.innerHTML);
+        })
+        
+不管怎样，请记住在V8环境中， 对arguments 使用这种方法将会存在[很大的性能影响](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments) 。
+当性能是首要考虑的因素时，避免对arguments使用 slice方法，相反地使用 for 循环。
+
+<b>不好的写法</b>
+
+        var args = [].slice.call(arguments);
+        
+<b>好的写法</b>
+
+        var i;
+        var args = new Array(arguments.length);
+        for (i = 0; i < args.length; i++) {
+            args[i] = arguments[i];
+        }
+不要在循环里声明函数。
+
+<b>不好的写法</b>
+
+        var values = [1, 2, 3];
+        var i;
+        
+        for(i = 0; i < values.length; i++) {
+            setTimeout(function() {
+                console.log(values[i]);
+            }, 1000 * i);
+        }
+        
+        var values = [1, 2, 3];
+        var i;
+        
+        for (i = 0; i < values.length; i++) {
+            set
+        }
+        
