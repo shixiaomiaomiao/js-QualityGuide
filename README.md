@@ -355,8 +355,9 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
         for (i = 0; i < args.length; i++) {
             args[i] = arguments[i];
         }
-不要在循环里声明函数。
-
+        
+        
+不要在循环里声明函数。(why ? )
 <b>不好的写法</b>
 
         var values = [1, 2, 3];
@@ -372,6 +373,97 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
         var i;
         
         for (i = 0; i < values.length; i++) {
-            set
+            setTimeout(function (i) {
+                return function () {
+                    console.log(values[i]);
+                }
+            }(i), 1000 * i);
+        }
+<b>好的写法</b>
+
+        var values = [1, 2, 3];
+        var i;
+        
+        for(i = 0; i < values.length; i++) {
+            setTimeout(function (i) {
+                console.log(values[i]);
+            },1000 * i, i);
         }
         
+        var values = [1, 2, 3];
+        var i;
+        
+        for (i = 0; i < values.length; i++) {
+            wait(i);
+        }
+        
+        function wait (i) {
+            setTimeout(function () {
+                console.log(values[i]);
+            }, 1000 * i);
+        }
+[setTimeout的第三个参数](http://www.cnblogs.com/shixiaomiao/p/5393201.html)
+或者更好的，只用.forEach方法，它不会像在for循环中定义函数产生一样的警告。
+<b>更好的写法</b>
+
+        [1, 2, 3].forEach(function (value, i) {
+            setTimeout(function () {
+                console.log(value);
+            },1000 * i);
+        });
+不管一个函数是否是极其复杂的，尽量使用一个显示命名的函数声明而不是一个匿名函数。在显示命名的函数中，分析堆栈跟踪时，指明意外情况发生的根本原因将变得更加容易。
+<b>不好的写法</b>
+
+        function once (fn) {
+            var ran = false;
+            return function () {
+                if (ran) { return };
+                ran = true;
+                fn.apply(this, arguments);
+            };
+        }
+<b>好的写法</b>
+
+        function once (fn) {
+            var ran = false;
+            return function run() {
+                if (ran) { return };
+                ran = true;
+                fn.apply(this, arguments);
+            }
+        }
+        
+通过使用卫语句(guard clauses)来避免出现太多的条件缩进，而不是用流动的if块。
+卫语句： 如果某个条件极其罕见，就应该单独检查该条件，并在该条件为真时立刻从函数中返回。
+
+<b>不好的写法</b>
+
+        if (car) {
+            if (black) {
+                if (turbine) {
+                    return 'batman!';
+                }
+            }
+        }
+        if (condition) {
+            // 10+ lines of code
+        }
+<b>好的写法</b>
+
+        if (!car) {
+            return;
+        }
+        if (!black) {
+            return;
+        }
+        if (!turbine) {
+            return;
+        }
+        return 'batman!'
+        if (!condition) {
+            return;
+        }
+        // 10+ lines of code
+        
+<a href = 'prototype' id = 'prototype'></a>
+#原型
