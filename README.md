@@ -63,12 +63,12 @@
 
 间距不只是需要按tab键，还需要在函数声明参数的前、后和之间设置空格。这种间距通常来说与代码执行正确与否完全无关，所以对于大多数的团队来说，达成一个能够让每个人都满意的机制非常困难。
 
-    function () {}
-    
+    function () {} 
+        
     function( a, b ){}
-    
-    function(a, b) {}
-    
+        
+    function(a, b) {} 
+        
     function(a,b) {}
     
 试着将上述的写法的不同降到最小，但是也不用对其细想过多。
@@ -143,7 +143,7 @@
 
         function format () {
             var args = [].slice.call(arguments);
-            var initial = args.shif();
+            var initial = args.shift();
             
             function replacer (text, replacement) {
                 return text.replace('%s', replacement);
@@ -163,7 +163,7 @@
 
 <a href = '#varDeclaration' id = 'varDeclaration'></a>
 #变量声明
-保持变量声明方式的一致性，并且在作用域的顶部声明。鼓励变量声明执行\"一个变量一行\"原则。逗号在前，单个var声明，多个var声明，这些都是可以的，只要在项目中保持一致，并且确保团队一致就好。
+保持变量声明方式的一致性，并且在作用域的顶部声明。鼓励变量声明执行"一个变量一行"原则。逗号在前，单个var声明，多个var声明，这些都是可以的，只要在项目中保持一致，并且确保团队一致就好。
 
 <b>不好的写法</b>
 
@@ -220,7 +220,7 @@
 从文本理解角度来考虑，避免条件语句出现在单独一行将更加好。
 
 <b>更好的写法</b>
-        
+
         if (err) {
             throw err;
         }
@@ -467,3 +467,70 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
         
 <a href = 'prototype' id = 'prototype'></a>
 #原型
+解析原生原型应该不惜一切代价的避免这么做，使用方法代替。如果你必须以原生的方式扩展函数，试着使用其他的方式，例如[poser](https://github.com/bevacqua/poser)(此处原作者有打广告嫌疑，poser是原作者开发的模块)
+<b>不好的写法</b>
+
+        String.prototype.half = function () {
+            return this.substr(0, this.length /2);
+        }
+
+<b>好的写法</b>
+
+        function half (text) {
+            return text.substr(0, text.length /2);
+        }
+        
+<b>避免使用原型继承模型</b>，除非你具有非常好的性能原因来证明你自己。
+-原型继承对this具有很高的依赖，需要依赖this与外界联系
+-比使用普通的objects对象更加冗长
+-当new一个对象时，将产生令人头痛的麻烦
+-需要终止隐藏实例有价值的私有状态(private state)
+-只使用普通的objects对象
+
+<a href = '#objectliterals' id = 'objectliterals'></a>
+#字面对象量
+使用 埃及符号{}来实例化对象。使用工厂函数而不是构造函数，以下是我建议的方案来在通常情况下实现objects对象。
+
+        function util (options) {
+            //私有方法写在这里
+            var foo;
+            
+            function add () {
+                return foo++;
+            }
+            
+            function reset () {   //注意这个方法不是显示暴露的
+                foo = options.start || 0;
+            }
+            
+            reset();
+            
+            return {
+                //共有接口方法写在这里
+                uuid : add
+            };
+        }
+
+<a href = '#arrayliterals' id = 'arrayliterals'></a>
+#数组字面量
+使用方括号符号来实例化一个数组。如果你处于性能原因必须声明一个确定好维数的数组，那么使用new Array(length)的方式来定义比较好。
+
+        //注意区别
+        var a = [];
+        a instanceof Array;  //true
+        var b = 'ss';
+        typeof b; //string
+        b instanceof String ; // false
+        
+是时候你该掌握数组操作啦！[学习更多的基础](https://ponyfoo.com/articles/fun-with-native-arrays)这比你想的要更加地容易。
+-[.forEach](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+-[.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
+-[.splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+-[.join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
+-[.concat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+-[.unshift](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
+-[.shift](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
+-[.push](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+-[.pop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
+
+学习和使用函数集合操作的方法。这些是非常值得麻烦。
