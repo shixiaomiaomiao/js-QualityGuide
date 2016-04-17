@@ -24,7 +24,7 @@
 14. [对象字面量](#objectliterals)
 15. [数组字面量](#arrayliterals)
 16. [正则表达式](#regularexpressions)
-17. [console声明](#console)
+17. [console语句](#console)
 18. [注释](#comments)
 19. [变量命名](#varibalenaming)
 20. [Polyfills](#polyfills)
@@ -533,4 +533,83 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
 -[.push](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
 -[.pop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
 
-学习和使用函数集合操作的方法。这些是非常值得麻烦。
+学习和使用函数集合操作的方法。这些是非常值得花时间研究的。
+-[.filter](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+-[.map](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+-[.reduce](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+-[.reduceRight](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight)
+-[.some](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+-[.every](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+-[.sort](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+-[.reverse](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
+
+<a href = '#regularexpressions' id = 'regularexpressions'></a>
+#正则表达式
+将正则表达式赋值给变量，不要将它们在行间使用。这将会极大地提高可读性。
+<b>不好的写法</b>
+
+        if (/\d+/.test(text)) {
+            console.log('so many numbers!');
+        }
+<b>好的写法</b>
+
+        var numberic = /\d+/;
+        if (numeric.test(text)) {
+            console.log('so many numbers!');
+        }
+同时也要[学习如何书写正则表达式](https://ponyfoo.com/articles/learn-regular-expressions),和他们到底是如何工作的。然后你可以[在线测试它们](http://www.regexper.com/#%2F%5Cd%2B%2F)。
+
+<a href = '#console' id = 'console' ></a>
+#console语句
+用console语句执行的功能在实际的产品中将不会显现。另外，不要在发布产品的时候不要用console.log打印任何语句。
+
+<a href = '#comments' id = 'comment'></a>
+#注释
+注释<b>不是用来解释</b>代码是用来干嘛的。好的<b>代码应该自带解释作用</b>。如果你正在思考用写注释来解释一段代码的用途，你可能需要修改代码本身。解释正则表达式的用途除外。好的注释是用于<b>解释为什么</b>代码执行一些并不具有明确目的的功能。
+
+<b>不好的写法</b>
+
+
+        //创造一个居中的容器
+        var p = $('<p>');
+        p.center(div);
+        p.text('foo');
+        
+<b>好的写法</b>
+
+        var container = $('p');
+        var contents = 'foo';
+        container.center(parent);
+        container.text(contents);
+        megaphone.on('data', function (value) {
+            container.text(value);  //扩音器（"megaphone"）间歇性地向容器（"container"）发送跟新信息
+        });
+        
+        var numeric = /\d+/;  //在字符串中的一个或多个数字
+        if (numeric.test(text) {
+            console.log('so many numbers!')
+        })
+注释整个代码块应该被避免，这就是为什么在适当的位置你有版本控制系统！
+
+<a herf = '#varibalenaming' id = 'varibalenaming'></a>
+#变量命名
+变量应该具有一定意义的名字，这样的话，你就不必用注释来解释一段的功能。相反地，尝试使用简洁地、具有一定意义的变量名称。
+<b>不好的写法</b>
+
+        function a (x, y, z) {
+            return z * y / x;
+        }
+        a(4, 2, 6);
+        // <- 3
+        
+<b>好的写法</b>
+
+        function ruleOfThree (had, got, have) {
+            return have * got / had;
+        }
+        ruleOfThree(4, 2, 6);
+        // <- 3
+
+<a herf = '#polyfills' id = 'polyfills'></a>
+#Polyfills
+
