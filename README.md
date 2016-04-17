@@ -357,7 +357,8 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
         }
         
         
-不要在循环里声明函数。(why ? )
+不要在循环里声明函数。（why ?） 
+
 <b>不好的写法</b>
 
         var values = [1, 2, 3];
@@ -404,6 +405,7 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
         }
 [setTimeout的第三个参数](http://www.cnblogs.com/shixiaomiao/p/5393201.html)
 或者更好的，只用.forEach方法，它不会像在for循环中定义函数产生一样的警告。
+
 <b>更好的写法</b>
 
         [1, 2, 3].forEach(function (value, i) {
@@ -412,6 +414,7 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
             },1000 * i);
         });
 不管一个函数是否是极其复杂的，尽量使用一个显示命名的函数声明而不是一个匿名函数。在显示命名的函数中，分析堆栈跟踪时，指明意外情况发生的根本原因将变得更加容易。
+
 <b>不好的写法</b>
 
         function once (fn) {
@@ -422,6 +425,7 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
                 fn.apply(this, arguments);
             };
         }
+        
 <b>好的写法</b>
 
         function once (fn) {
@@ -468,6 +472,7 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
 <a href = 'prototype' id = 'prototype'></a>
 #原型
 解析原生原型应该不惜一切代价的避免这么做，使用方法代替。如果你必须以原生的方式扩展函数，试着使用其他的方式，例如[poser](https://github.com/bevacqua/poser)(此处原作者有打广告嫌疑，poser是原作者开发的模块)
+
 <b>不好的写法</b>
 
         String.prototype.half = function () {
@@ -489,6 +494,7 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
 
 <a href = '#objectliterals' id = 'objectliterals'></a>
 #字面对象量
+
 使用 埃及符号{}来实例化对象。使用工厂函数而不是构造函数，以下是我建议的方案来在通常情况下实现objects对象。
 
         function util (options) {
@@ -546,11 +552,13 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
 <a href = '#regularexpressions' id = 'regularexpressions'></a>
 #正则表达式
 将正则表达式赋值给变量，不要将它们在行间使用。这将会极大地提高可读性。
+
 <b>不好的写法</b>
 
         if (/\d+/.test(text)) {
             console.log('so many numbers!');
         }
+        
 <b>好的写法</b>
 
         var numberic = /\d+/;
@@ -563,7 +571,7 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
 #console语句
 用console语句执行的功能在实际的产品中将不会显现。另外，不要在发布产品的时候不要用console.log打印任何语句。
 
-<a href = '#comments' id = 'comment'></a>
+<a href = '#comments' id = 'comments'></a>
 #注释
 注释<b>不是用来解释</b>代码是用来干嘛的。好的<b>代码应该自带解释作用</b>。如果你正在思考用写注释来解释一段代码的用途，你可能需要修改代码本身。解释正则表达式的用途除外。好的注释是用于<b>解释为什么</b>代码执行一些并不具有明确目的的功能。
 
@@ -594,6 +602,7 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
 <a herf = '#varibalenaming' id = 'varibalenaming'></a>
 #变量命名
 变量应该具有一定意义的名字，这样的话，你就不必用注释来解释一段的功能。相反地，尝试使用简洁地、具有一定意义的变量名称。
+
 <b>不好的写法</b>
 
         function a (x, y, z) {
