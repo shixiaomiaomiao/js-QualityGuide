@@ -621,4 +621,54 @@ jQuery就是[一个充满着令人恼火的三元操作符的代码库的典型�
 
 <a herf = '#polyfills' id = 'polyfills'></a>
 #Polyfills
+在可能的情况下使用本地浏览器实现，并且包含[一个用于解决不支持一些行为的浏览器问题的polyfill]。这使得代码更加容易处理，在较少使用hackery的情况下也能使得代码功能正常进行。
+如果你不能使用polyfill实现补丁功能，那么[将补丁代码的所有使用打包](https://ponyfoo.com/articles/building-high-quality-front-end-modules)成一个全局可用的方法，这个方法可以在应用中任何地方使用。
 
+<a href = '#everydaytricks' id = 'everydaytricks' ></a>
+#日常小技巧
+使用 || 来定义一个默认值。如果||左值是[假的](http://james.padolsey.com/javascript/truthy-falsey/)则右值被使用。由于比较的宽松机制，输入例如false, 0 , null 或者是''都会被认为是假值，并且被转化成默认值。为了严格审查使用 if (value === void 0) { value = defaultValue }.
+
+        function a (value) {
+            var defaultValue = 33;
+            var used = value || defaultValue;
+        }
+        
+对于局部应用函数使用.bind方法。（why ??）
+
+        function sum (a, b) {
+            return a + b;
+        }
+        
+        var addSeven = sum.bind(null, 7);
+        
+        addSeven(6);
+        // <- 13
+
+对于类似于数组的对象使用Array.prototype.slice.call方法将其变成真数组。
+
+        var args = Array.prototype.slice.call(arguments);
+
+在所有的事件中使用[event emitters](https://github.com/bevacqua/contra#%CE%BBemitterthing-options).
+
+        var emitter = contra.emitter();
+        body.addEventListener('click', function () {
+          emitter.emit('click', e.target);
+        });
+        
+        emitter.on('click', function (elem) {
+          console.log(elem);
+        });
+        
+        // simulate click
+        emitter.emit('click', document.body);
+        Use Function() as a "no-op".
+        
+        function (cb) {
+          setTimeout(cb || Function(), 2000);
+        }
+
+
+<a href = '#license' id = 'license'></a>
+#许可证
+MIT
+>请Fork走吧！
